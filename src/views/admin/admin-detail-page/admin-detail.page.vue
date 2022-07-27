@@ -53,7 +53,7 @@
             </p>
           </div>
         </div>
-        <div class="grid grid-cols-6 justify-item-end my-6" v-if="this.$store.getters.getRole == 'ROLE_SUPER_ADMIN'">
+        <div class="grid grid-cols-6 justify-item-end my-6" v-if="this.$store.getters.getRole == 'ROLE_SUPER_ADMIN' && admin.id!=4">
             <ButtomVue @click="verifyUser" class="mx-2" buttonName="Verify" />
             <ButtomVue class="invisible" buttonName="update" />
             <ButtomVue class="invisible" buttonName="update" />

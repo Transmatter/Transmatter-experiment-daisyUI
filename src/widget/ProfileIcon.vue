@@ -24,7 +24,7 @@ export default {
 }
 </script>
 <template>
-    <div class="block">
+    <!-- <div class="block">
         <div class="ml-4 flex items-center md:ml-6">
             <div class="ml-3 relative">
                 <div class="relative inline-block text-left">
@@ -55,5 +55,14 @@ export default {
                 </div>
             </div>
         </div>
+    </div> -->
+    <div class="dropdown dropdown-hover dropdown-end">
+        <ProfileButton /> 
+        {{$store.getters.getCurrentUser.username}}
+        <ul tabindex="0" class="dropdown-content menu shadow bg-base-100 rounded-box w-52">
+            <li><MenuItem @click="seeDetail" content="Account"/></li>                             
+            <li><MenuItem @click="updateDetail" content="Update"/></li>
+            <li><MenuItem @click="mockLogout" content="Logout"/></li>
+        </ul>
     </div>
 </template>
