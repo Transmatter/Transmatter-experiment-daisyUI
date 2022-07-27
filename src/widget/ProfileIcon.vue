@@ -1,6 +1,7 @@
 <script>
 import MenuItem from './MenuItem.vue';
 import ProfileButton from './ProfileButton.vue';
+import Login from "@/service/LoginAPI.js";
 
 export default {
     components : {
@@ -9,7 +10,15 @@ export default {
     },
     methods:{
         mockLogout(){
-            this.$store.state.login = !this.$store.state.login;
+            Login.logout();
+        },
+        seeDetail(){
+            this.$router.push(`/admin/${this.$store.getters.getCurrentUser.id}`);
+            this.$store.state.trigger = false
+        },
+        updateDetail(){
+            this.$router.push(`/update/${this.$store.getters.getCurrentUser.id}`);
+            this.$store.state.trigger = false
         }
     } 
 }
@@ -20,7 +29,8 @@ export default {
             <div class="ml-3 relative">
                 <div class="relative inline-block text-left">
                     <div>
-                        <ProfileButton />    
+                        <ProfileButton /> 
+                        {{$store.getters.getCurrentUser.username}}
                     </div>
                     <div
                         v-if="this.$store.state.trigger"
@@ -37,8 +47,8 @@ export default {
                         "
                     >
                         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <MenuItem content="Setting"/>                            
-                            <MenuItem content="Account"/>                            
+                            <MenuItem @click="seeDetail" content="Account"/>                            
+                            <MenuItem @click="updateDetail" content="Update"/>                            
                             <MenuItem @click="mockLogout" content="Logout"/>                            
                         </div>
                     </div>
